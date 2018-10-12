@@ -12,14 +12,16 @@
  * @author Unknown
  *
  */
-class SinglyLinkedList{
+class SinglyLinkedList
+{
 	/**Head refered to the front of the list */
 	private Node head;
 
 	/**
 	 * Constructor of SinglyLinkedList
 	 */
-	public SinglyLinkedList(){
+	public SinglyLinkedList()
+	{
 		head = null;
 	}
 
@@ -28,7 +30,8 @@ class SinglyLinkedList{
 	 * 
 	 * @param x Element to be added
 	 */
-	public void insertHead(int x){
+	public void insertHead(int x)
+	{
 		Node newNode = new Node(x); //Create a new link with a value attached to it
 		newNode.next = head; 		//Set the new link to point to the current head
 		head = newNode; 			//Now set the new link to be the head
@@ -47,42 +50,40 @@ class SinglyLinkedList{
         // You do not need to specify head as a parameter as it is already an instance variable 
 	// Instead of Node newNode = new Node(); and then setting its data to the node, just initialize newNode with data as its parameter
         Node newNode = new Node(data);
-        //check if head is null which means the linked list length is 0 and check if position is 0
-	if(head == null && position ==0)
-	{
-	     head = newNode;
-	}
 	//check if the position is negative
 	if(position<0)
 	{
 	     return null;
 	}
-        if (position == 0) 
+        else if (position == 0) 
 	{
             newNode.next = head;
 	//You also have to set private instance variable "head" to be your newNode
 	    head = newNode
             return newNode;
         }
-        Node current = head;
-        int currentPosition=1;
-	//currentPosition will always be one ahead of current
-        while (currentPosition != position)
+	else
 	{
+           Node current = head;
+     	   int currentPosition=1;
+		//currentPosition will always be one ahead of current and we know that the parameter position is >=1
+           while (currentPosition != position)
+	   {
             current = current.next;
             currentPosition++;
-        }
-        newNode.next = current.next;
-        current.next = newNode;
-        return head;
-    }
+           }
+           newNode.next = current.next;
+           current.next = newNode;
+           return head;
+    	} 
     
 	/**
 	 * This method deletes an element at the head
 	 * 
 	 * @return The element deleted
 	 */
-	public Node deleteHead(){
+	public Node deleteHead()
+	{
 		Node temp = head;
 		head = head.next; //Make the second element in the list the new head, the Java garbage collector will later remove the old head
 		return temp;
@@ -93,16 +94,19 @@ class SinglyLinkedList{
 	 * 
 	 * @return true is list is empty
 	 */
-	public boolean isEmpty(){
+	public boolean isEmpty()
+	{
 		return(head == null);
 	}
 
 	/**
 	 * Prints contents of the list
 	 */
-	public void display(){
+	public void display()
+	{
 		Node current = head;
-		while(current!=null){
+		while(current!=null)
+		{
 			System.out.print(current.getValue()+" ");
 			current = current.next;
 		}
@@ -114,7 +118,8 @@ class SinglyLinkedList{
 	 * 
 	 * @param args Command line arguments
 	 */
-	public static void main(String args[]){
+	public static void main(String args[])
+	{
 		SinglyLinkedList myList = new SinglyLinkedList();
 
 		System.out.println(myList.isEmpty()); //Will print true
@@ -139,7 +144,8 @@ class SinglyLinkedList{
  * @author Unknown
  *
  */
-class Node{
+class Node
+{
 	/** The value of the node */
 	public int value;
 	/** Point to the next node */
@@ -150,14 +156,16 @@ class Node{
 	 * 
 	 * @param valuein Value to be put in the node
 	 */
-	public Node(int valuein){
+	public Node(int valuein)
+	{
 		value = valuein;
 	}
 
 	/**
 	 * Returns value of the node
 	 */
-	public int getValue(){
+	public int getValue()
+	{
 		return value;
 	}
 

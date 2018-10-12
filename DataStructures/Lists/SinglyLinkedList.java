@@ -43,22 +43,35 @@ class SinglyLinkedList{
      * @return  reference of the head of the linked list
      */
 
-    Node InsertNth(Node head, int data, int position) {
-        
-        Node newNode = new Node();
-        newNode.data = data;
-        
-        if (position == 0) {
+    Node InsertNth(int data, int position) {
+        // You do not need to specify head as a parameter as it is already an instance variable 
+	// Instead of Node newNode = new Node(); and then setting its data to the node, just initialize newNode with data as its parameter
+        Node newNode = new Node(data);
+        //check if head is null which means the linked list length is 0 and check if position is 0
+	if(head == null && position ==0)
+	{
+	     head = newNode;
+	}
+	//check if the position is negative
+	if(position<0)
+	{
+	     return null;
+	}
+        if (position == 0) 
+	{
             newNode.next = head;
+	//You also have to set private instance variable "head" to be your newNode
+	    head = newNode
             return newNode;
         }
-
         Node current = head;
-
-        while (--position > 0) {
+        int currentPosition=1;
+	//currentPosition will always be one ahead of current
+        while (currentPosition != position)
+	{
             current = current.next;
+            currentPosition++;
         }
-        
         newNode.next = current.next;
         current.next = newNode;
         return head;
